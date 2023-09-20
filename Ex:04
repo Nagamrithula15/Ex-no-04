@@ -1,0 +1,125 @@
+//1. Employee Abstract Class//
+
+abstract class Employee {
+    protected String name;
+    protected int age;
+    protected double hourRate;
+
+    public Employee(String name, int age, double hourRate) {
+        this.name = name;
+        this.age = age;
+        this.hourRate = hourRate;
+    }
+
+    public abstract double calcSalary(double hours);
+
+    
+    public String toString() {
+        return "Name: " + name + ", Age: " + age + ", Hourly Rate: $" + hourRate;
+    }
+}
+
+class Manager extends Employee {
+    public Manager(String name, int age, double hourRate) {
+        super(name, age, hourRate);
+    }
+
+    public double calcSalary(double hours) {
+        return hourRate * hours;
+    }
+}
+
+class Clerk extends Employee {
+    public Clerk(String name, int age, double hourRate) {
+        super(name, age, hourRate);
+    }
+
+    public double calcSalary(double hours) {
+        return hourRate * hours;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Manager manager1 = new Manager("John Doe", 40, 25.0);
+        Manager manager2 = new Manager("Jane Smith", 35, 30.0);
+        Clerk clerk = new Clerk("Alice Johnson", 28, 20.0);
+
+        double manager1Salary = manager1.calcSalary(40);
+        double manager2Salary = manager2.calcSalary(45);
+        double clerkSalary = clerk.calcSalary(35);
+
+        System.out.println("Manager 1 Details: " + manager1 + ", Salary: Rs." + manager1Salary);
+        System.out.println("Manager 2 Details: " + manager2 + ", Salary: Rs." + manager2Salary);
+        System.out.println("Clerk Details: " + clerk + ", Salary: Rs." + clerkSalary);
+    }
+}
+
+
+//2. Interface//
+
+interface Printable {
+    void print();
+}
+
+class Rectangle implements Printable {
+    private double length;
+    private double breadth;
+
+    public Rectangle(double length, double breadth) {
+        this.length = length;
+        this.breadth = breadth;
+    }
+
+    public void print() {
+        System.out.println("Rectangle: Length=" + length + ", Breadth=" + breadth + ", Area=" + (length * breadth));
+    }
+}
+
+class SportsCar implements Printable {
+    private String brandName;
+    private String model;
+    private double price;
+
+    public SportsCar(String brandName, String model, double price) {
+        this.brandName = brandName;
+        this.model = model;
+        this.price = price;
+    }
+
+    public void print() {
+        System.out.println("SportsCar: Brand=" + brandName + ", Model=" + model + ", Price=$" + price);
+    }
+}
+
+class Manager implements Printable {
+    private String name;
+    private int age;
+    private int employeeID;
+    private double salary;
+
+    public Manager(String name, int age, int employeeID, double salary) {
+        this.name = name;
+        this.age = age;
+        this.employeeID = employeeID;
+        this.salary = salary;
+    }
+
+    public void print() {
+        System.out.println("Manager: Name=" + name + ", Age=" + age + ", EmployeeID=" + employeeID + ", Salary=$" + salary);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Creating objects for the Printable interface
+        Printable rectangle = new Rectangle(5, 10);
+        Printable sportsCar = new SportsCar("Ferrari", "F458", 250000);
+        Printable managerDetails = new Manager("John Doe", 40, 101, 3000);
+
+        // Printing details using the Printable interface
+        rectangle.print();
+        sportsCar.print();
+        managerDetails.print();
+    }
+}
